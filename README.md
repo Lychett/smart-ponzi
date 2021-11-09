@@ -1,2 +1,2 @@
 # smart-ponzi
-dataset, bytecodes and script
+addresses, dataset and bytecode of some smart ponzi released on ethereum blockchain
