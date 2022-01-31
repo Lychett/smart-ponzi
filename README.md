@@ -1,2 +1,1 @@
-# smart-ponzi
-addresses, dataset and bytecodes of some smart ponzi released on ethereum blockchain
+Cartella tesi "Rilevamento smart Ponzi sulla blockchain di Ethereum tramite machine learning"
