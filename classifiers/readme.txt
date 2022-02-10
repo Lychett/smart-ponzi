@@ -1,1 +1,1 @@
-Questa cartella contiene tutti i classificatori costruiti. Ogni sottocartella presente avra' al suo interno il dataset utilizzato, il rispettivo file dei target ed il codice del classificatore. Per eseguire i codici sara' necessario scaricare i dataset e file dei target e cambiare nei codici il path.
+Questa cartella contiene tutti i classificatori costruiti. Ogni sottocartella presente avra' al suo interno il dataset utilizzato, il rispettivo file dei target ed il codice del classificatore.
