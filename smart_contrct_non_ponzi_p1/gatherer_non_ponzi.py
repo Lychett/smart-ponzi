@@ -26,7 +26,7 @@ def sdev(dict_of_values, mean_of_values): # deviazione standard
 
 # apertura dei file
 non_ponzi_addr = "non_ponzi_addresses.csv"              # indirizzi smart contract
-#bytecodes_result = open("bytecodes.txt", "w+") # conterra' il bytecode degli smart contract
+bytecodes_result = open("bytecodes.txt", "w+") # conterra' il bytecode degli smart contract
 non_ponzi_result = open("non_ponzi_result.csv", "w+")   # conterra' le features degli smart contract
 writer = csv.writer(non_ponzi_result, lineterminator = '\n') # writer per scrivere sul file
 writer.writerow(['address', 'balance', 'lifetime', 'tx_in', 'tx_out', 'investment_in', 'payment_out', 'investment_to_contract/tx_in', 'payment_from_contract/tx_out', '#addresses_paying_contract', '#addresses_paid_by_contract', 'mean_v1', 'sdev_v1', 'mean_v2', 'sdev_v2', 'paid_rate', 'paid_one', 'percentage_some_tx_in', 'sdev_tx_in', 'percentage_some_tx_out', 'sdev_tx_out', 'owner_gets_eth_Wo_investing', 'owner_gets_eth_investing', 'owner_no_eth'])
@@ -52,7 +52,7 @@ for addr in non_ponzi: # ciclo su tutti gli indirizzi presenti nella lista
     dict_addr_tx_in = {}         # dizionario, <indirizzo: #pagamenti inviati al contratto dall'indirizzo>
     dict_addr_eth_in = {}        # dizionario, <indirizzo: amount inviati al contratto dall'indirizzo>
     dict_addr_eth_out = {}       # dizionario, <indirizzo: amount ricevuti dall'indirizzo>
-    #bytcd = ''                  # in questa stringa ci mettero' il bytecode del contratto
+    bytcd = ''                  # in questa stringa ci mettero' il bytecode del contratto
     creator_addr = ''            # mantiene l'indirizzo di chi crea il contratto
     creator_get_eth_wo_investing = 0   # 1 se il creatore ha ottenuto eth senza investire
     creator_get_eth_investing = 0      # 1 se il creatore ha ottenuto eth investendo
@@ -70,11 +70,11 @@ for addr in non_ponzi: # ciclo su tutti gli indirizzi presenti nella lista
             if (date_first_tx == 0): 
                 date_first_tx = int(t['timeStamp']) # assegno la prima che trovo
                 creator_addr = t['from'] # assegno anche il creatore del contratto
-            #if not bytcd: # disponendo le transazione in ordine asc, la prima che si incontra manterra' il bytecode dello smart contract
-                #bytcd = t['input']
-                #to_print_in_file = bytcd[2:]
-                #to_print_in_file += "\n" # inserico il new line altrimenti non va accapo
-                #bytecodes_result.write(to_print_in_file)
+            if not bytcd: # disponendo le transazione in ordine asc, la prima che si incontra manterra' il bytecode dello smart contract
+                bytcd = t['input']
+                to_print_in_file = bytcd[2:]
+                to_print_in_file += "\n" # inserico il new line altrimenti non va accapo
+                bytecodes_result.write(to_print_in_file)
             # si trasforma il timestamp in una stringa e lo inserisco in txs_list_in
             obj_datetime = datetime.fromtimestamp(int(t['timeStamp'])) 
             txs_list_in.append(obj_datetime.strftime('%Y-%m-%d')) # inserisco in coda la data
@@ -193,5 +193,5 @@ for addr in non_ponzi: # ciclo su tutti gli indirizzi presenti nella lista
     time.sleep(0.2)
 
 non_ponzi_result.close()
-#bytecodes_result.close()
+bytecodes_result.close()
 print("end of the journey!")
