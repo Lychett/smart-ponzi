@@ -3,9 +3,9 @@
 #include <string.h>
 #include <limits.h>
 
-#define ADDR_LEN 45     // lunghezza indirizzi (7)
-#define LSIZ 33000      // lunghezza massima bytecode (33000 e' il massimo della lunghezza del bytecode nel file ponzi exploiting blockchain) (12)
-#define NUM_SMART_PONZI 66 // numero di smart ponzi presenti nel dataset (9)
+#define ADDR_LEN 45     // lunghezza indirizzi
+#define LSIZ 33000      // lunghezza massima bytecode (33000 e' il massimo della lunghezza del bytecode nel file ponzi exploiting blockchain) 
+#define NUM_SMART_PONZI 66 // numero di smart ponzi presenti nel dataset
 
 // funzione che calcola il minimo di 3 valori
 int minimum(int a, int b, int c) { 
@@ -129,7 +129,7 @@ int main(void)
     int LevDist[NUM_SMART_PONZI][NUM_SMART_PONZI]; // creo la matrice che conterra' i risultati del calcolo della Levenshtein
 
     for(int i=0; i<NUM_SMART_PONZI; i++){
-        for(int j=i+1; j<NUM_SMART_PONZI; j++){ // j = i+1 e posso togliere anche il controllo dell'if a riga successiva
+        for(int j=i+1; j<NUM_SMART_PONZI; j++){ // calcolo solo le distanze per meta' matrice dato che i valori saranno speculari rispetto alla diagonale
                 LevDist[i][j] = Levenshtein_distance(bytecodeSC[i], bytecodeSC[j]); // riempio la matrice per righe calcolando la Levenshtein
                 LevDist[j][i] = LevDist[i][j];
         }
