@@ -3,9 +3,9 @@
 #include <string.h>
 #include <limits.h>
 
-#define ADDR_LEN 45             // lunghezza indirizzi
-#define LSIZ 33000              // lunghezza massima dei bytecode 
-#define NUM_SMART_PONZI 66      // numero di bytecode da analizzare
+#define ADDR_LEN 45     // lunghezza indirizzi (7)
+#define LSIZ 33000      // lunghezza massima bytecode (33000 e' il massimo della lunghezza del bytecode nel file ponzi exploiting blockchain) (12)
+#define NUM_SMART_PONZI 66 // numero di smart ponzi presenti nel dataset (9)
 
 // funzione che calcola il minimo di 3 valori
 int minimum(int a, int b, int c) { 
@@ -128,10 +128,12 @@ int main(void)
 
     int LevDist[NUM_SMART_PONZI][NUM_SMART_PONZI]; // creo la matrice che conterra' i risultati del calcolo della Levenshtein
 
-    for(int i=0; i<NUM_SMART_PONZI; i++)
-        for(int j=0; j<NUM_SMART_PONZI; j++) // j = i+1 e posso togliere anche il controllo dell'if a riga successiva
-            if(i != j) // sulla diagonale non calcolo perche' saranno i medesimi bytecode
+    for(int i=0; i<NUM_SMART_PONZI; i++){
+        for(int j=i+1; j<NUM_SMART_PONZI; j++){ // j = i+1 e posso togliere anche il controllo dell'if a riga successiva
                 LevDist[i][j] = Levenshtein_distance(bytecodeSC[i], bytecodeSC[j]); // riempio la matrice per righe calcolando la Levenshtein
+                LevDist[j][i] = LevDist[i][j];
+        }
+    }
 
     int pos = -1;
 
@@ -144,7 +146,7 @@ int main(void)
                     pos = j;
                 }
                 if(min == 0){ // abbiamo una equivalenza completa, si tratta sicuramente di un doppione
-                    printf("lo smart contract %s e' una copia dello smart contract in posizione %d \n", addresses[i], pos);
+                    printf("lo smart contract %s e' una copia dello smart contract %s \n", addresses[i], addresses[pos]);
                     break;
                 }
             }
@@ -157,9 +159,9 @@ int main(void)
                 normalizedLD = (double)min/strlen(bytecodeSC[pos]);
 
             if(normalizedLD < 0.05)
-                printf("lo smart contract %s potrebbe essere una copia dello smart contract in posizione %d \n", addresses[i], pos);
+                printf("lo smart contract %s potrebbe essere una copia dello smart contract %s \n", addresses[i], addresses[pos]);
             else
-                printf("lo smart contract %s, non dovrebbe avere copie nel dataset \n", addresses[i]);
+                printf("lo smart contract %s non ha copie nel dataset \n", addresses[i]);
         }
     }
 
