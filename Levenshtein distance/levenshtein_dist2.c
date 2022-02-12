@@ -101,7 +101,7 @@ int main(void)
 
     scanf("%s",bname);	
     bytecode = fopen(bname, "r");
-    if(ponziBytecode == NULL){
+    if(bytecode == NULL){
         printf("It's not possible open this file.\n");
         exit(1);      
     }
