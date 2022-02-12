@@ -163,14 +163,5 @@ int main(void)
         }
     }
 
-    // devo liberare memoria di LevDist
-    for (int i=0; i<NUM_SMART_PONZI; i++) {
-        for (int j=0; j<NUM_SMART_PONZI; j++) {
-            free(LevDist[i][j]);
-        }
-        free(LevDist[i]);
-    }
-    free(LevDist);
-
     return 0;
 }
