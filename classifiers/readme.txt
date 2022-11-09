@@ -1,1 +1,1 @@
-Questa cartella contiene tutti i classificatori costruiti. Ogni sottocartella presente avra' al suo interno il dataset utilizzato, il rispettivo file dei target ed il codice del classificatore.
+This folder contains all the built classifiers. Each subfolder present will have inside the dataset used, the respective target file and the classifier code.
