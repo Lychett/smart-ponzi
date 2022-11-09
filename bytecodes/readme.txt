@@ -1,1 +1,1 @@
-cartella contenente i bytecodes dei contratti analizzati
+Folder containing the bytecodes of the analyzed contracts
