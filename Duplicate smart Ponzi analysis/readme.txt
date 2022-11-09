@@ -1,2 +1,2 @@
-una volta raccolti tutti i bytecode degli smart ponzi presenti nel mio dataset ho lanciato questo script per verificare che non vi fossero duplicati.
-A seguito di questo script ho trovato circa un centinaio di smart ponzi uguali che sono stati dunque rimossi dal dataset.
+Once all the bytecodes of the smart ponzi present in my dataset have been collected, I launched this script to verify that there were no duplicates.
+Following this script, I found about a hundred identical smart ponzis which were therefore removed from the dataset.
